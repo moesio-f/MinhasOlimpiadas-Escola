@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "450432320313",
+    "firebase_url": "https://minhas-olimpiadas.firebaseio.com",
+    "project_id": "minhas-olimpiadas",
+    "storage_bucket": "minhas-olimpiadas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450432320313:android:9805500906de8cf0271ee8",
+        "android_client_info": {
+          "package_name": "com.moesiof.minhasolimpiadas_escola"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450432320313-t0s0lsje1srss479q9je29lp06sfr884.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moesiof.minhasolimpiadas_escola",
+            "certificate_hash": "c0c5d19c8ce813fa6c90c21a07e37855741a78b7"
+          }
+        },
+        {
+          "client_id": "450432320313-kiloqlgq9482j7g0sektj3l241t97qbt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwAkn8YYyqmd11fZqgEQN8-ysslSeYYFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450432320313-kiloqlgq9482j7g0sektj3l241t97qbt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
