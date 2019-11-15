@@ -1,6 +1,8 @@
 package com.moesiof.minhasolimpiadas_escola
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -10,6 +12,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.moesiof.minhasolimpiadas_escola.database.School
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -20,9 +23,16 @@ class HomeActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        val school : School = intent?.getParcelableExtra("school")!!
+
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
+
+        navView.getHeaderView(0).findViewById<TextView>(R.id.nameTextView).text = school.name
+        navView.getHeaderView(0).findViewById<TextView>(R.id.emailTextView).text = school.email
+
+
 
         appBarConfiguration = AppBarConfiguration(
             setOf(

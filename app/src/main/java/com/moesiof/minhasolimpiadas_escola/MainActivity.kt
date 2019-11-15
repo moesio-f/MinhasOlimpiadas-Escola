@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
 import com.moesiof.minhasolimpiadas_escola.database.Database
+import com.moesiof.minhasolimpiadas_escola.database.School
 import kotlinx.android.synthetic.main.login_activity.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,10 +30,15 @@ class MainActivity : AppCompatActivity() {
                     if(task.isSuccessful)
                     {
                         val data = task.result
-                        val value = data!!["password"].toString()
-                        if(value == pass)
+                        val school = School(data!!["name"].toString(), data["Principal"].toString(),
+                            data["email"].toString(), data["phone"].toString(),
+                            data["address"].toString(),data["inepCode"].toString(),
+                            data["idCode"].toString(),data["password"].toString())
+
+                        if(school.password == pass)
                         {
                             val  nextActivity = Intent(this, HomeActivity::class.java)
+                            nextActivity.putExtra("school", school)
                             startActivity(nextActivity)
                         }
                         else

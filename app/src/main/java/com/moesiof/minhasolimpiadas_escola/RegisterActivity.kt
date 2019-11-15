@@ -34,8 +34,7 @@ class RegisterActivity : AppCompatActivity() {
                     {
                         Toast.makeText(baseContext,"Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show()
                         val nextActivity = Intent(this, RegisterResultActivity::class.java)
-                        nextActivity.putExtra("idCode", school.idCode)
-                        nextActivity.putExtra("password", school.password)
+                        nextActivity.putExtra("school", school)
                         startActivity(nextActivity)
                     }
                     else
