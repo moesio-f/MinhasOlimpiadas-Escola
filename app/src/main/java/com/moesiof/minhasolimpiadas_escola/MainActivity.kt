@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                     if(task.isSuccessful)
                     {
                         val data = task.result
-                        val school = School(data!!["name"].toString(), data["Principal"].toString(),
+                        val school = School(data!!["name"].toString(), data["principal"].toString(),
                             data["email"].toString(), data["phone"].toString(),
                             data["address"].toString(),data["inepCode"].toString(),
                             data["idCode"].toString(),data["password"].toString())

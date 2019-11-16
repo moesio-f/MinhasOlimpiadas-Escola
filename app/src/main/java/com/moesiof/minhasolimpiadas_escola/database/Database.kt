@@ -3,6 +3,7 @@ package com.moesiof.minhasolimpiadas_escola.database
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import com.google.firebase.storage.FirebaseStorage
 
 class Database {
@@ -19,6 +20,11 @@ class Database {
 
     fun getFromDatabase(collection: String, document : String) : Task<DocumentSnapshot>
     {
-        return db.collection(collection).document(document).get()
+        return db.collection(collection).document(document).get(Source.SERVER)
+    }
+
+    companion object {
+        lateinit var schoolCollection : String
+        fun setCollection(collection: String) { schoolCollection = collection }
     }
 }
