@@ -9,23 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.moesiof.minhasolimpiadas_escola.R
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 
 class CalendarFragment : Fragment() {
 
     private lateinit var calendarViewModel: CalendarViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        calendarViewModel =
-            ViewModelProviders.of(this).get(CalendarViewModel::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        //calendarViewModel = ViewModelProviders.of(this).get(CalendarViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        calendarViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+        val calendar : MaterialCalendarView = root.findViewById(R.id.calendarView)
+        calendar.addDecorator(EventDecorator())
+        //calendarViewModel.text.observe(this, Observer { textView.text = it })
         return root
     }
 }

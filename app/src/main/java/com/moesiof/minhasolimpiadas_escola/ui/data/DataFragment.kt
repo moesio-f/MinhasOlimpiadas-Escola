@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -28,16 +30,37 @@ class DataFragment : Fragment() {
         val schoolINEP: TextView = root.findViewById(R.id.schoolINEP_text)
         val schoolCode: TextView = root.findViewById(R.id.schoolCode_text)
         val schoolPassword: TextView = root.findViewById(R.id.schoolPassword_text)
+        val progressBar: ProgressBar = root.findViewById(R.id.progressbar_data)
+        val schoolIMG: ImageView = root.findViewById(R.id.schoolIMG)
+
 
         dataViewModel.getSchool().observe(this, Observer<School> {
+            progressBar.visibility = View.GONE
+            schoolIMG.visibility = View.VISIBLE
+
             schoolName.text = it.name
+            schoolName.visibility = View.VISIBLE
+
             schoolEmail.text = "Email: ${it.email}"
+            schoolEmail.visibility = View.VISIBLE
+
             schoolPrincipal.text = "Gestor(a): ${it.principal}"
+            schoolPrincipal.visibility = View.VISIBLE
+
             schoolPhone.text = "Telefone: ${it.phone}"
+            schoolPhone.visibility = View.VISIBLE
+
             schoolAddress.text = "Endereço: ${it.address}"
+            schoolAddress.visibility = View.VISIBLE
+
             schoolINEP.text = "Código Inep: ${it.inepCode}"
+            schoolINEP.visibility = View.VISIBLE
+
             schoolCode.text = "Código da escola: ${it.idCode}"
+            schoolCode.visibility = View.VISIBLE
+
             schoolPassword.text = "Senha da escola: ${it.password}"
+            schoolPassword.visibility = View.VISIBLE
         })
 
         return root
