@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavArgument
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -20,6 +21,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -32,19 +34,17 @@ class HomeActivity : AppCompatActivity() {
         navView.getHeaderView(0).findViewById<TextView>(R.id.nameTextView).text = school.name
         navView.getHeaderView(0).findViewById<TextView>(R.id.emailTextView).text = school.email
 
-
-
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_calendar, R.id.nav_data,
-                R.id.nav_sugestions), drawerLayout
-        )
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_home, R.id.nav_calendar, R.id.nav_data, R.id.nav_sugestions), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+
 }

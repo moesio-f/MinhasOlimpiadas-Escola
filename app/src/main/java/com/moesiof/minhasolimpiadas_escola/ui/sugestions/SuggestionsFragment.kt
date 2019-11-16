@@ -1,4 +1,4 @@
-package com.moesiof.minhasolimpiadas_escola.ui.gallery
+package com.moesiof.minhasolimpiadas_escola.ui.sugestions
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.moesiof.minhasolimpiadas_escola.R
 
-class GalleryFragment : Fragment() {
+class SuggestionsFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var suggestionsViewModel: SuggestionsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-            ViewModelProviders.of(this).get(GalleryViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(this, Observer {
+        suggestionsViewModel =
+            ViewModelProviders.of(this).get(SuggestionsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_suggestions, container, false)
+        val textView: TextView = root.findViewById(R.id.text_tools)
+        suggestionsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

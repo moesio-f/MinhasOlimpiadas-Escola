@@ -12,20 +12,20 @@
 
     <fragment
         android:id="@+id/nav_calendar"
-        android:name="com.moesiof.minhasolimpiadas_escola.ui.gallery.GalleryFragment"
+        android:name="com.moesiof.minhasolimpiadas_escola.ui.calendar.CalendarFragment"
         android:label="Calendário Olimpíadas"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_calendar" />
 
     <fragment
         android:id="@+id/nav_data"
-        android:name="com.moesiof.minhasolimpiadas_escola.ui.slideshow.SlideshowFragment"
+        android:name="com.moesiof.minhasolimpiadas_escola.ui.data.DataFragment"
         android:label="Informações da Escola"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_data" />
 
     <fragment
         android:id="@+id/nav_sugestions"
-        android:name="com.moesiof.minhasolimpiadas_escola.ui.tools.ToolsFragment"
+        android:name="com.moesiof.minhasolimpiadas_escola.ui.sugestions.SuggestionsFragment"
         android:label="Dúvidas e Sugestões dos Alunos"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_suggestions" />
 
 </navigation>
