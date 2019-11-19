@@ -1,6 +1,7 @@
 package com.moesiof.minhasolimpiadas_escola.ui.calendar
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +17,26 @@ class CalendarFragment : Fragment() {
     private lateinit var calendarViewModel: CalendarViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //calendarViewModel = ViewModelProviders.of(this).get(CalendarViewModel::class.java)
+
+        calendarViewModel = ViewModelProviders.of(this).get(CalendarViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
         val calendar : MaterialCalendarView = root.findViewById(R.id.calendarView)
-        calendar.addDecorator(EventDecorator())
-        //calendarViewModel.text.observe(this, Observer { textView.text = it })
+        val eventsOfDay : TextView = root.findViewById(R.id.eventsOfDay_text)
+
+        calendarViewModel.getEvents().observe(this, Observer<MutableList<CalendarEvent>> {
+            CalendarEvent.setAllEvents(it)
+            calendar.invalidateDecorators()
+            calendar.addDecorator(EventDecorator(it))
+        })
+
+        calendar.setOnDateChangedListener {widget, date, selected ->
+            if(selected)
+            {
+                val current = CalendarEvent.hasEvent(date)
+                eventsOfDay.text = current.writtenEvent()
+            }
+        }
+
         return root
     }
 }
