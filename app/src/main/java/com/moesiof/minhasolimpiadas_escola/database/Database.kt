@@ -29,6 +29,11 @@ class Database {
         return db.collection(collection).get(Source.SERVER)
     }
 
+    fun getFromDatabase(collection: String, base : String, targetValue : Any) : Task<QuerySnapshot>
+    {
+        return db.collection(collection).whereEqualTo(base, targetValue).get()
+    }
+
     companion object {
         lateinit var schoolCollection : String
         fun setCollection(collection: String) { schoolCollection = collection }

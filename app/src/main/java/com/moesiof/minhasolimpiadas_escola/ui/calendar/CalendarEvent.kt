@@ -1,6 +1,5 @@
 package com.moesiof.minhasolimpiadas_escola.ui.calendar
 
-import android.util.Log
 import com.prolificinteractive.materialcalendarview.CalendarDay
 
 class CalendarEvent(val name : String, val description : String, val date : String, val isValid : Boolean) {
