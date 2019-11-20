@@ -21,7 +21,7 @@ class SuggestionAdapter(private val suggestions : List<Suggestion>) : RecyclerVi
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: SuggestionAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.author.text = suggestions[position].author
         holder.date.text = suggestions[position].date
         holder.content.text = suggestions[position].suggestion

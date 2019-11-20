@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,6 +25,7 @@ class SuggestionsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         suggestionsViewModel = ViewModelProviders.of(this).get(SuggestionsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_suggestions, container, false)
+        val progressBar = root.findViewById<ProgressBar>(R.id.progressSuggestions)
 
         suggestionsViewModel.getAllSuggestions().observe(this, Observer<MutableList<Suggestion>>{
             viewManager = LinearLayoutManager(root.context)
@@ -33,6 +35,8 @@ class SuggestionsFragment : Fragment() {
                 layoutManager = viewManager
                 adapter = viewAdapter
             }
+
+            progressBar.visibility = View.GONE
         })
 
         return root
