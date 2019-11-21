@@ -1,9 +1,10 @@
 package com.moesiof.minhasolimpiadas_escola.ui.home
 
-import android.util.Log
+import android.os.Parcel
+import android.os.Parcelable
 import java.util.*
 
-class Olympics(val name : String, var teacher : String, val day : String, val registrationOpen : String, val registrationClose : String) {
+class Olympics(val name : String, var teacher : String, val day : String, val registrationOpen : String, val registrationClose : String, val description : String, val imgURL : String) : Parcelable {
 
     fun isOpen() : Boolean
     {
@@ -38,5 +39,31 @@ class Olympics(val name : String, var teacher : String, val day : String, val re
             return true
         }
         return false
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
+        parcel.writeString(teacher)
+        parcel.writeString(day)
+        parcel.writeString(registrationOpen)
+        parcel.writeString(registrationClose)
+        parcel.writeString(description)
+        parcel.writeString(imgURL)
+    }
+
+    constructor(parcel: Parcel) : this(parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString())
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Olympics> {
+        override fun createFromParcel(parcel: Parcel): Olympics {
+            return Olympics(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Olympics?> {
+            return arrayOfNulls(size)
+        }
     }
 }

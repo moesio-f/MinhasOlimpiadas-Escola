@@ -19,6 +19,11 @@ class Database {
         return db.collection(collection).document(document).set(data)
     }
 
+    fun updateToDatabase(collection: String, document : String, field: String, data : Any) : Task<*>
+    {
+        return db.collection(collection).document(document).update(field, data)
+    }
+
     fun getFromDatabase(collection: String, document : String) : Task<DocumentSnapshot>
     {
         return db.collection(collection).document(document).get(Source.SERVER)

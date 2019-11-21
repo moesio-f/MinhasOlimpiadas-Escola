@@ -32,10 +32,19 @@ class RegisterActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                     if(task.isSuccessful)
                     {
-                        Toast.makeText(baseContext,"Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show()
-                        val nextActivity = Intent(this, RegisterResultActivity::class.java)
-                        nextActivity.putExtra("school", school)
-                        startActivity(nextActivity)
+                        Database().getFromDatabase("Main").addOnSuccessListener {result ->
+                            var list = mutableListOf<String>()
+                            for(document in result)
+                            {
+                                list.add(document.id)
+                            }
+                            Database().addToDatabase(school.idCode, "relation", createDeafultMap(list)).addOnSuccessListener {
+                                Toast.makeText(baseContext,"Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show()
+                                val nextActivity = Intent(this, RegisterResultActivity::class.java)
+                                nextActivity.putExtra("school", school)
+                                startActivity(nextActivity)
+                            }
+                        }
                     }
                     else
                     {
@@ -103,5 +112,15 @@ class RegisterActivity : AppCompatActivity() {
     private fun getRandomChar() : String{
         val ch = ('A'..'Z').random()
         return ch.toString()
+    }
+
+    private fun createDeafultMap(values : MutableList<String>) : HashMap<String, String>
+    {
+        val hash = HashMap<String, String>()
+        for(value in values)
+        {
+            hash[value] = "Sem Professor"
+        }
+        return hash
     }
 }

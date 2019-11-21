@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.moesiof.minhasolimpiadas_escola.R
 import kotlinx.android.synthetic.main.home_viewholder.view.*
 
-class OlympicsAdapter(private val olympics : List<Olympics>) : RecyclerView.Adapter<OlympicsAdapter.MyViewHolder>() {
+
+class OlympicsAdapter(private val olympics : List<Olympics>, private val callback : (Int) -> Unit) : RecyclerView.Adapter<OlympicsAdapter.MyViewHolder>() {
     private lateinit var context : Context
 
     override fun getItemCount(): Int {
@@ -23,6 +26,7 @@ class OlympicsAdapter(private val olympics : List<Olympics>) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        Glide.with(context).load(olympics[position].imgURL).apply(RequestOptions.fitCenterTransform()).into(holder.logo)
         holder.title.text = olympics[position].name
         holder.teacher.text = olympics[position].teacher
         if(olympics[position].hasTeacher())
@@ -46,10 +50,14 @@ class OlympicsAdapter(private val olympics : List<Olympics>) : RecyclerView.Adap
             holder.registrationOpen.text = "INSCIÇÕES FECHADAS"
             holder.registrationOpen.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRed))
         }
+
+        holder.itemView.setOnClickListener {
+            callback(position)
+        }
     }
 
     inner class MyViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView) {
-        var logo =  itemView.logo //Later
+        var logo =  itemView.logo
         var teacher = itemView.teacher_text
         var title = itemView.labelTitle
         var registrationOpen = itemView.labelRegistrationOpen

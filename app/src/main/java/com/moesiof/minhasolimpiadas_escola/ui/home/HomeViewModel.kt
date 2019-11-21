@@ -23,7 +23,7 @@ class HomeViewModel : ViewModel() {
             val olympics = mutableListOf<Olympics>()
             for(document in result)
             {
-                olympics.add(Olympics(document.id, "Sem Professor", document["day"].toString(), document["registrationOpen"].toString(), document["registrationClose"].toString()))
+                olympics.add(Olympics(document.id, "Sem Professor", document["day"].toString(), document["registrationOpen"].toString(), document["registrationClose"].toString(), document["description"].toString(), document["imgURL"].toString()))
             }
 
             Database().getFromDatabase(Database.schoolCollection, "relation").addOnSuccessListener {result2 ->
